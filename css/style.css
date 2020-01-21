@@ -97,8 +97,7 @@ body{
             transition: all .6s ease-in-out;
     text-align: left;
     vertical-align: text-bottom;
-
-    color: #666;
+    color:black;
     border: 0;
     background-color: transparent;
 }

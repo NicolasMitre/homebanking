@@ -24,7 +24,7 @@ function validadorCien(valorIngresado) //valida las extracciones que no sean div
 {
 	var respuesta;
 	valorIngresado = parseInt(valorIngresado);
-	if((valorIngresado % 100) !=0) 
+	if((valorIngresado % 100) != 0) 
 	{
 		enviarMensaje("No se puede pedir montos de divisiones que no sean de $100.");
 		respuesta = false;

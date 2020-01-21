@@ -3,10 +3,10 @@
 var users;
 var usersList = [
 	{ 
-		username: "admin",
-		password: "hacker",
+		username: "nico",
+		password: "123avapass",
 		saldoCuenta: 3500,
-		nombreUsuario: "super super administrador",
+		nombreUsuario: "Nicolas Ezequiel Melluso",
 		limiteExtraccion: 3000,
 		theme: 0,
 		registro: "Registro de acciones \n//----------------------------//\n",
@@ -14,8 +14,8 @@ var usersList = [
 		tasa: 10
 	},
 	{
-		username: "usuario",
-		password: "12345678",
+		username: "jaz",
+		password: "123avapass",
 		saldoCuenta: 1000,
 		nombreUsuario: "Usuario generico divertido",
 		limiteExtraccion: 4000,
@@ -25,10 +25,10 @@ var usersList = [
 		tasa: 10
 	},
 	{
-		username: "Nicolas",
+		username: "martin",
 		password: "0241",
 		saldoCuenta: 720,
-		nombreUsuario: "Nicolas Ezequiel M",
+		nombreUsuario: "Martin",
 		limiteExtraccion: 2000,
 		theme: 2,
 		registro: "Registro de acciones \n//----------------------------//\n",
@@ -36,10 +36,10 @@ var usersList = [
 		tasa: 10
 	},
 	{ 
-		username: "Acamica",
-		password: "Indie900",
+		username: "leo",
+		password: "admin",
 		saldoCuenta: 9000,
-		nombreUsuario: "Acamica Indie Coworking",
+		nombreUsuario: "Leo Avalith",
 		limiteExtraccion: 5000,
 		theme: 3,
 		registro: "Registro de acciones \n//----------------------------//\n",
