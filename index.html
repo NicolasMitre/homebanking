@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>	
+      <meta charset="UTF-8">
+		  <title>Login to your dreams </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="css/login.css">
+      <script src="js/constantes.js"></script>
+      <script src="js/apariencia.js"></script>
+      <script src="js/validaciones.js"></script>  
+      <link rel="shortcut icon" href="img/multisame.ico">
+	</head>
+	<body>
+    <div class="container_login">
+      <form>
+        <h1>Login and enjoy our services</h1>
+          <input type="text" id="username" placeholder="Usuario" onclick="cambiaPropiedades()">
+          <input type="password" id="password" placeholder="Clave">
+          <button class="links" id="btnLog" type="button" onclick="login()">Aceptar</button>
+      </form>
+    </div>
+    <div id="imgclick"> <img id="img1" src="img/flechaizquierda.png" onclick="cambiaPropiedades();">
+    </div>
+    <div class="container_login" id="barclick">
+      <h1> Usuarios disponibles </h1>
+      <blockquote></blockquote>
+      <p> Cada usuario tiene su propia cuenta <br> en nuestro banco, pruebelas todas para confirmar!</p>
+      <p>
+        <strong> Usuario: </strong> admin <strong> Clave: </strong> hacker <br>
+        <strong> Usuario: </strong> usuario <strong> Clave: </strong> 12345678 <br><strong> Usuario: </strong> Nicolas <strong> Clave: </strong> 0241 <br><strong> Usuario: </strong> Acamica <strong> Clave: </strong> Indie900</p>
+      <p id="mensaje"></p>
+    </div>  
+		<script src="js/login.js"></script>
+	</body>
+</html>
