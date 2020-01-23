@@ -1,6 +1,6 @@
-//variables
 var users;
 //funciones
+
 loadUsers();
 document.onkeydown = pulsarTecla;
 
@@ -13,9 +13,19 @@ function loadUsers()
 	} 
 	else 
 	{
-		 localStorage.setItem("users", JSON.stringify(usersList));
-		 users = usersList;
+		obtenerObjetoJSON();
 	}
+}
+
+function obtenerObjetoJSON()
+{
+	$.getJSON("/js/counts.json", function(data) {
+	
+		var result = JSON.stringify(data);
+		localStorage.setItem("users", result);
+		users = data;
+});
+
 }
 
 function pulsarTecla(e) //Al pulsar la tecla enter se validan los datos

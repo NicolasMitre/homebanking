@@ -1,0 +1,18 @@
+[
+    {
+        "servicio":"agua",
+        "costo":150
+    },
+    {
+        "servicio":"telefono",
+        "costo":250
+    },
+    {
+        "servicio":"luz",
+        "costo":350
+    },
+    {
+        "servicio":"internet",
+        "costo":450
+    }
+]

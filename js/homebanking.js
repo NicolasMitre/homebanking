@@ -143,7 +143,7 @@ function depositarDinero()
 function pagarServicio() 
 {		
 	verificarDeuda();
-	var opcion = mostrarMensaje('¿Que servicio desea pagar? \n 1 - Agua $'+servicioAgua+'. \n2 - Telefono $'+servicioTelefono+' \n3 - Luz $'+servicioLuz+' \n4 - Internet $'+servicioInternet+'.');
+	var opcion = mostrarMensaje('¿Que servicio desea pagar? \n 1 - Agua $'+ services[0].costo +'. \n2 - Telefono $'+services[1].costo+' \n3 - Luz $'+services[2].costo+' \n4 - Internet $'+services[3].costo+'.');
 	verificarTarifa(opcion);
 }
 
@@ -299,32 +299,27 @@ function restarDinero(deposito)
 
 function verificarTarifa(opcion) //verifica que clase de servicio se desea pagar
 {	
-	var servicio = "";
 	opcion=parseInt(opcion);
 	switch(opcion)
 	{
 		case 1:
 		{	
-			servicio = 'Agua';
-			pagar(servicioAgua, servicio);
+			pagar(services[opcion - 1].costo, services[opcion - 1].servicio);
 		}
 			break;
 		case 2:
 		{	
-			servicio = 'Telefono';
-			pagar(servicioTelefono, servicio);
+			pagar(services[opcion - 1].costo, services[opcion - 1].servicio);
 		}
 			break;
 		case 3:
 		{	
-			servicio = 'Luz';
-			pagar(servicioLuz, servicio);
+			pagar(services[opcion - 1].costo, services[opcion - 1].servicio);
 		}
 			break;
 		case 4:
 		{	
-			servicio = 'Internet';
-			pagar(servicioInternet, servicio);
+			pagar(services[opcion - 1].costo, services[opcion - 1].servicio);
 		}			
 			break;
 
