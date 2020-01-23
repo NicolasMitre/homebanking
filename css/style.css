@@ -1,382 +1,382 @@
-body{
-    margin: 0;
+body {
+  margin: 0;
 
-    font-family: "Source Sans Pro", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 
-    background-color: #2a333d;
+  background-color: #2a333d;
 }
 
 @font-face {
-    font-family: 'godofwar';
-    src: url(../fonts/GODOFWAR.TTF) format("trueType");
+  font-family: "godofwar";
+  src: url(../fonts/GODOFWAR.TTF) format("trueType");
 }
 @font-face {
-    font-family: 'gotic';
-    src: url(../fonts/gotic.ttf) format("trueType");
+  font-family: "gotic";
+  src: url(../fonts/gotic.ttf) format("trueType");
 }
 @font-face {
-    font-family: 'rustico';
-    src: url(../fonts/rustic.ttf) format("trueType");
+  font-family: "rustico";
+  src: url(../fonts/rustic.ttf) format("trueType");
 }
 .avatar {
-    display: inline-block;
+  display: inline-block;
 
-    vertical-align: text-bottom;
+  vertical-align: text-bottom;
 }
 
 .logo {
-    display: inline-block;
-    width: 200px;
-    height: 50px;
+  display: inline-block;
+  width: 200px;
+  height: 50px;
 
-    text-align: left;
-    vertical-align: text-bottom;
+  text-align: left;
+  vertical-align: text-bottom;
 }
 
 .align-left {
-    display: flex;
-    padding: 8px;
+  display: flex;
+  padding: 8px;
 
-    align-items: center;
+  align-items: center;
 }
 
 .tu-cuenta {
-    padding-left: 24px;
-    margin: 0;
-    margin-left: -30px;
+  padding-left: 24px;
+  margin: 0;
+  margin-left: -30px;
 
-    font-family: "Source Sans Pro";
-    font-size: 32px;
-    font-weight: normal;
+  font-family: "Source Sans Pro";
+  font-size: 32px;
+  font-weight: normal;
 
-    color: #2a333d;
-    border-left: 6px solid #2cc197;
+  color: #2a333d;
+  border-left: 6px solid #2cc197;
 }
 
 .header {
-    display: flex;
-    width: 65%;
-    margin: 20px auto 0;
-    margin-bottom: 15px;
+  display: flex;
+  width: 65%;
+  margin: 20px auto 0;
+  margin-bottom: 15px;
 
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .cuenta-info {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
 
 #nombre {
-    display: inline-block;
-    margin-right: 10px;
-    overflow: hidden;
+  display: inline-block;
+  margin-right: 10px;
+  overflow: hidden;
 
-    font-size: 14px;
+  font-size: 14px;
 
-    text-overflow: ellipsis;
+  text-overflow: ellipsis;
 
-    color: #fff;
+  color: #fff;
 }
 
 .links {
-    position: relative;
+  position: relative;
 
-    display: block;
-    padding: 0;
-    margin: 20px 0;
-    margin-bottom: 30px;
+  display: block;
+  padding: 0;
+  margin: 20px 0;
+  margin-bottom: 30px;
 
-    font-family: "Source Sans Pro";
-    font-size: 16px;
+  font-family: "Source Sans Pro";
+  font-size: 16px;
 
-    cursor: pointer;
-    -webkit-transition: all .6s ease-in-out;
-       -moz-transition: all .6s ease-in-out;
-         -o-transition: all .6s ease-in-out;
-            transition: all .6s ease-in-out;
-    text-align: left;
-    vertical-align: text-bottom;
-    color:black;
-    border: 0;
-    background-color: transparent;
+  cursor: pointer;
+  -webkit-transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
+  text-align: left;
+  vertical-align: text-bottom;
+  color: black;
+  border: 0;
+  background-color: transparent;
 }
 
 .links:hover {
-    margin-left: 10px;
+  margin-left: 10px;
 
-    color: #2cc197;
+  color: #2cc197;
 }
 
 .white-container {
-    display: flex;
-    width: 65%;
-    padding: 30px;
-    margin: 0 auto;
-    box-sizing: border-box;
+  display: flex;
+  width: 65%;
+  padding: 30px;
+  margin: 0 auto;
+  box-sizing: border-box;
 
-    border: 1px solid #979797;
-    border-radius: 8px;
-    background-color: #fff;
+  border: 1px solid #979797;
+  border-radius: 8px;
+  background-color: #fff;
 
-    justify-content: center;
+  justify-content: center;
 }
 
-.green-container{
-    display: flex;
-    width: 65%;
-    box-sizing: border-box;
+.green-container {
+  display: flex;
+  width: 65%;
+  box-sizing: border-box;
 
-    text-align: center;
+  text-align: center;
 
-    color: white;
-    border-radius: 8px;
-    background-color: #2cc197;
+  color: white;
+  border-radius: 8px;
+  background-color: #2cc197;
 
-    align-items: center;
+  align-items: center;
 }
 
 .menu-container {
-    display: block;
-    width: 35%;
-    padding-right: 20px;
+  display: block;
+  width: 35%;
+  padding-right: 20px;
 }
 
 .cuenta-container {
-    width: 35%;
+  width: 35%;
 }
 
 #saldo-cuenta {
-    margin-top: 5%;
-    margin-bottom: 5%;
-    overflow: hidden;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  overflow: hidden;
 
-    font-size: 6.5vw;
+  font-size: 6.5vw;
 
-    text-align: center;
-    text-overflow: ellipsis;
+  text-align: center;
+  text-overflow: ellipsis;
 }
 
 #limite-extraccion {
-    overflow: hidden;
+  overflow: hidden;
 
-    font-size: 15px;
+  font-size: 15px;
 
-    text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 .opciones {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }
 
-#cgimg{
-    max-width: 50px;
-    max-height: 50px;
+#cgimg {
+  max-width: 50px;
+  max-height: 50px;
 }
 #panelTheme {
-    width: 200px;
-    position: fixed;
-    top: -600px;
-    right: 50%;
-    transform: translateX(50%);
+  width: 200px;
+  position: fixed;
+  top: -600px;
+  right: 50%;
+  transform: translateX(50%);
 }
 
 #panelTheme a {
-    background-color: #eee;
-    color: black;
-    display: block;
-    padding: 12px;
-    text-decoration: none;
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
 }
 
 #panelTheme a:hover {
-    background-color: #ccc;
+  background-color: #ccc;
 }
 
 #panelTheme a.active {
-    background-color: #4CAF50;
-    color: white;
-    cursor: default;
+  background-color: #4caf50;
+  color: white;
+  cursor: default;
 }
 
 /* Tema Original  */
 body.theme-original {
-    background-color: #2a333d;
+  background-color: #2a333d;
 }
 body.theme-original .links:hover {
-    color: #2cc197;
+  color: #2cc197;
 }
 
 body.theme-original #panelTheme a.active {
-    background-color: #2cc197;
-    color: white;
-    cursor: default;
+  background-color: #2cc197;
+  color: white;
+  cursor: default;
 }
 
 body.theme-original .green-container {
-    display: flex;
-    width: 65%;
-    box-sizing: border-box;
-    text-align: center;
-    color: white;
-    border-radius: 8px;
-    background-color: #2cc197;
-    align-items: center;
+  display: flex;
+  width: 65%;
+  box-sizing: border-box;
+  text-align: center;
+  color: white;
+  border-radius: 8px;
+  background-color: #2cc197;
+  align-items: center;
 }
 
 body.theme-original .tu-cuenta {
-    padding-left: 24px;
-    margin: 0;
-    margin-left: -30px;
+  padding-left: 24px;
+  margin: 0;
+  margin-left: -30px;
 
-    font-family: "Source Sans Pro";
-    font-size: 32px;
-    font-weight: normal;
+  font-family: "Source Sans Pro";
+  font-size: 32px;
+  font-weight: normal;
 
-    color: #2a333d;
-    border-left: 6px solid #2cc197;
+  color: #2a333d;
+  border-left: 6px solid #2cc197;
 }
 /* Fin tema original */
 
 /* Tema divertido  */
 body.theme-divertido {
-    background-color: #ff00db;
-    font-family: 'godofwar';
+  background-color: #ff00db;
+  font-family: "godofwar";
 }
 
 body.theme-divertido #panelTheme a.active {
-    background-color: #00dfff;
-    color: white;
-    cursor: default;
+  background-color: #00dfff;
+  color: white;
+  cursor: default;
 }
 
 body.theme-divertido .green-container {
-    display: flex;
-    width: 65%;
-    box-sizing: border-box;
-    text-align: center;
-    color: #666;
-    border-radius: 8px;
-    background-color: #fdff00;
-    align-items: center;
+  display: flex;
+  width: 65%;
+  box-sizing: border-box;
+  text-align: center;
+  color: #666;
+  border-radius: 8px;
+  background-color: #fdff00;
+  align-items: center;
 }
 
 body.theme-divertido .tu-cuenta {
-    padding-left: 24px;
-    margin: 0;
-    margin-left: -30px;
+  padding-left: 24px;
+  margin: 0;
+  margin-left: -30px;
 
-    font-family: 'godofwar';
-    font-size: 32px;
-    font-weight: normal;
+  font-family: "godofwar";
+  font-size: 32px;
+  font-weight: normal;
 
-    color: #2a333d;
-    border-left: 6px solid #7c00ff;
+  color: #2a333d;
+  border-left: 6px solid #7c00ff;
 }
 /* Fin tema divertido */
 
 /* Tema gotico */
 body.theme-gotico {
-    background-color: #292222;
-    font-family: 'gotic';
+  background-color: #292222;
+  font-family: "gotic";
 }
 
 body.theme-gotico #panelTheme a.active {
-    background-color: #c0606e;
-    color: white;
-    cursor: default;
+  background-color: #c0606e;
+  color: white;
+  cursor: default;
 }
 
 body.theme-gotico .green-container {
-    display: flex;
-    width: 65%;
-    box-sizing: border-box;
-    text-align: center;
-    color: #610909;
-    border-radius: 8px;
-    background-color: #000;
-    align-items: center;
+  display: flex;
+  width: 65%;
+  box-sizing: border-box;
+  text-align: center;
+  color: #610909;
+  border-radius: 8px;
+  background-color: #000;
+  align-items: center;
 }
 
 body.theme-gotico .tu-cuenta {
-    padding-left: 24px;
-    margin: 0;
-    margin-left: -30px;
+  padding-left: 24px;
+  margin: 0;
+  margin-left: -30px;
 
-    font-family: 'gotic';
-    font-size: 32px;
-    font-weight: normal;
+  font-family: "gotic";
+  font-size: 32px;
+  font-weight: normal;
 
-    color: #2a333d;
-    border-left: 6px solid #e89282;
+  color: #2a333d;
+  border-left: 6px solid #e89282;
 }
 /*Fin tema gotico*/
 
 /* Tema rustico */
 body.theme-rustico {
-    background-color: #703a31;
-    font-family: 'rustico';
+  background-color: #703a31;
+  font-family: "rustico";
 }
 
 body.theme-rustico #panelTheme a.active {
-    background-color: #4d5636;
-    color: white;
-    cursor: default;
+  background-color: #4d5636;
+  color: white;
+  cursor: default;
 }
 
 body.theme-rustico .green-container {
-    display: flex;
-    width: 65%;
-    box-sizing: border-box;
-    text-align: center;
-    color: #394442;
-    border-radius: 8px;
-    background-color: #a98628;
-    align-items: center;
+  display: flex;
+  width: 65%;
+  box-sizing: border-box;
+  text-align: center;
+  color: #394442;
+  border-radius: 8px;
+  background-color: #a98628;
+  align-items: center;
 }
 
 body.theme-rustico .tu-cuenta {
-    padding-left: 24px;
-    margin: 0;
-    margin-left: -30px;
+  padding-left: 24px;
+  margin: 0;
+  margin-left: -30px;
 
-    font-family: 'rustico';
-    font-size: 32px;
-    font-weight: normal;
+  font-family: "rustico";
+  font-size: 32px;
+  font-weight: normal;
 
-    color: #2a333d;
-    border-left: 6px solid #4b4743;
+  color: #2a333d;
+  border-left: 6px solid #4b4743;
 }
 /*Fin tema rustico*/
 
 @media only screen and (max-width: 800px) {
-    .white-container {
-        flex-direction: column-reverse;
-    }
+  .white-container {
+    flex-direction: column-reverse;
+  }
 
-    .green-container {
-        width: 100%;
-        margin-bottom: 20px;
-    }
+  .green-container {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
-    #saldo-cuenta {
-        font-size: 8.5vw;
-    }
+  #saldo-cuenta {
+    font-size: 8.5vw;
+  }
 
-    .menu-container {
-        width: 100%;
-    }
+  .menu-container {
+    width: 100%;
+  }
 
-    .header {
-        margin-bottom: 10px;
-        flex-direction: column;
+  .header {
+    margin-bottom: 10px;
+    flex-direction: column;
 
-        align-items: center;
-    }
+    align-items: center;
+  }
 
-    .logo {
-        margin-bottom: 10px;
-    }
+  .logo {
+    margin-bottom: 10px;
+  }
 }
