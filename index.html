@@ -1,58 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <title>Login to your dreams</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/login.css" />
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="js/constantes.js"></script>
-    <script src="js/apariencia.js"></script>
-    <script src="js/validaciones.js"></script>
-    <link rel="shortcut icon" href="img/multisame.ico" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <title>HOME BANKING</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <div class="container_login">
-      <form>
-        <h1>Login and enjoy our services</h1>
-        <input
-          type="text"
-          id="username"
-          placeholder="Usuario"
-          onclick="cambiaPropiedades()"
-        />
-        <input type="password" id="password" placeholder="Clave" />
-        <button class="links" id="btnLog" type="button" onclick="login()">
-          Aceptar
-        </button>
-      </form>
+    <div class="header">
+      <img class="logo" src="img/logo.png"/>
+      <div class="align-left">
+        <span id="nombre">Bienvenido/a</span>
+        <img class="avatar" src="img/avatar.svg"/>
+      </div>
     </div>
-    <div id="imgclick">
-      <img
-        id="img1"
-        src="img/flechaizquierda.png"
-        onclick="cambiaPropiedades();"
-      />
+    <div class="white-container">
+      <div class="menu-container">
+        <h1 class="tu-cuenta">Tu cuenta</h1>
+        <button class="links" onclick="extraerDinero()">Extraer dinero</button>
+        <button class="links" onclick="depositarDinero()">Depositar dinero</button>
+        <button class="links" onclick="pagarServicio()">Pagar servicios</button>
+        <button class="links" onclick="transferirDinero()">Transferir dinero</button>
+        <button class="links" onclick="cambiarLimiteDeExtraccion()">Cambiar límite de extracción</button>
+      </div>
+      <div class="green-container">
+        <div class="cuenta-info">
+          <p>Saldo en tu cuenta</p>
+          <h3 id="saldo-cuenta">$</h3>
+          <p id="limite-extraccion">Tu límite de extracción es: </p>
+        </div>
+      </div>
     </div>
-    <div class="container_login" id="barclick">
-      <h1>Usuarios disponibles</h1>
-      <blockquote></blockquote>
-      <p>
-        Cada usuario tiene su propia cuenta <br />
-        en nuestro banco, pruebelas todas para confirmar!
-      </p>
-      <p>
-        <strong> Usuario: </strong> nico <strong> Clave: </strong> 123avapass
-        <br />
-        <strong> Usuario: </strong> jaz <strong> Clave: </strong> 123avapass
-        <br />
-        <strong> Usuario: </strong> martin <strong> Clave: </strong> 123avapass
-        <br />
-        <strong> Usuario: </strong> leo <strong> Clave: </strong> admin
-      </p>
-      <p id="mensaje"></p>
-    </div>
-    <script src="js/login.js"></script>
   </body>
 </html>
