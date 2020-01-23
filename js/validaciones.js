@@ -1,5 +1,4 @@
 function esNumeroPositivo(valorIngresado) {
-  //Comprueba si es un numero y ademas positivo
   var respuesta = false;
 
   if (isNaN(valorIngresado)) {
