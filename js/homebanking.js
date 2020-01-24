@@ -1,5 +1,5 @@
 //Declaración de variables
-var usuarios;
+// var usuarios;
 
 async function readJson() {
   try {
@@ -14,16 +14,12 @@ async function readJson() {
   }
 }
 
-readJson()
-  .then(function(data) {
-    usuarios = data;
-  })
-  .catch(function(e) {
-    console.error("No se encuentra el archivo Json" + e);
-  });
-
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML.
-window.onload = function() {};
+
+window.onload = function() {
+  iniciarSesion();
+};
+
 //Funciones que tenes que completar
 function cambiarLimiteDeExtraccion() {}
 
@@ -35,7 +31,13 @@ function pagarServicio() {}
 
 function transferirDinero() {}
 
-function iniciarSesion() {}
+function iniciarSesion() {
+  let usuarios;
+  readJson().then(data => {
+    usuarios = data;
+    comprobarSesion(usuarios);
+  });
+}
 //Funciones de carga de datos
 
 //Funciones que actualizan el valor de las variables en el HTML
@@ -50,4 +52,20 @@ function actualizarSaldoEnPantalla() {
 function actualizarLimiteEnPantalla() {
   document.getElementById("limite-extraccion").innerHTML =
     "Tu límite de extracción es: $" + limiteExtraccion;
+}
+
+// Sesion
+
+function comprobarSesion(listaUsuarios) {
+  for (var i = 0; i < listaUsuarios.length; i++) {
+    if (
+      listaUsuarios[i].accountId == "nicolas" &&
+      listaUsuarios[i].password == "easypass"
+    ) {
+      console.log("Nico");
+      break;
+    } else {
+      alert("error");
+    }
+  }
 }
