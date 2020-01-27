@@ -1,5 +1,6 @@
 var flag = 1;
-//esta funcion cambia el css para crear el menu invisible
+
+// esta funcion cambia el css para crear el menu invisible
 
 function cambiaPropiedades() {
   if (flag) {
@@ -82,7 +83,7 @@ function cargarSkins(valor) {
 
 function cargarNombreEnPantalla() {
   document.getElementById("nombre").innerHTML =
-    "Bienvenido/a " + objUser.nombreUsuario;
+    "Bienvenido/a " + currentUser.nombreUsuario;
 }
 
 function actualizarSaldoEnPantalla() {

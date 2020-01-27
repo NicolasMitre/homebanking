@@ -1,16 +1,17 @@
-//variables
-var objUser = users[parseInt(localStorage.getItem("currentUser"))];
-var saldoCuenta = objUser.saldoCuenta;
-var limiteExtraccion = objUser.limiteExtraccion;
-var extraccionRestante = limiteExtraccion;
-var theme = objUser.theme;
-var registro = objUser.registro;
-var deuda = objUser.prestamo;
-var porcentaje = objUser.tasa;
+// Global Variables
 
-document.addEventListener("DOMContentLoaded", function(
-  event //carga el documento y ejecuta algunas funciones
-) {
+var currentUser = users[parseInt(localStorage.getItem("currentUser"))];
+var saldoCuenta = currentUser.saldoCuenta;
+var limiteExtraccion = currentUser.limiteExtraccion;
+var extraccionRestante = limiteExtraccion;
+var theme = currentUser.theme;
+var registro = currentUser.registro;
+var deuda = currentUser.prestamo;
+var porcentaje = currentUser.tasa;
+
+// Load the document and execute some functions
+
+document.addEventListener("DOMContentLoaded", function(event) {
   comprobarCuenta();
   cargarSkins(theme);
   cargarNombreEnPantalla();
@@ -18,51 +19,31 @@ document.addEventListener("DOMContentLoaded", function(
   actualizarLimiteEnPantalla();
   actualizarDeudaEnPantalla();
 
-  // eventos que escuchan los botones
-  // esto ayuda a separar el html del javascript
-  var extract = document.getElementById("extraer");
-  extract.addEventListener("click", function() {
-    extraerDinero();
-  });
-  var depositar = document.getElementById("depositar");
-  depositar.addEventListener("click", function() {
-    depositarDinero();
-  });
-  var servicios = document.getElementById("servicios");
-  servicios.addEventListener("click", function() {
-    pagarServicio();
-  });
-  var transferir = document.getElementById("transferir");
-  transferir.addEventListener("click", function() {
-    transferirDinero();
-  });
-  var prestamos = document.getElementById("prestamos");
-  prestamos.addEventListener("click", function() {
-    peticionDePrestamo();
-  });
-  var cambiarLimite = document.getElementById("cambiarlimiteextraccion");
-  cambiarLimite.addEventListener("click", function() {
-    cambiarLimiteDeExtraccion();
-  });
-  var adelantar = document.getElementById("adelantar");
-  adelantar.addEventListener("click", function() {
-    adelantarDia();
-  });
-  var registro = document.getElementById("registro");
-  registro.addEventListener("click", function() {
-    verRegistro();
-  });
-  var salir = document.getElementById("logout");
-  salir.addEventListener("click", function() {
-    logout();
-  });
+  // Events that listen the buttons (refactored)
+
+  document.getElementById("extraer").addEventListener("click", extraerDinero);
+  document
+    .getElementById("depositar")
+    .addEventListener("click", depositarDinero);
+  document.getElementById("servicios").addEventListener("click", pagarServicio);
+  document
+    .getElementById("transferir")
+    .addEventListener("click", transferirDinero);
+  document
+    .getElementById("prestamos")
+    .addEventListener("click", peticionDePrestamo);
+  document
+    .getElementById("cambiarlimiteextraccion")
+    .addEventListener("click", cambiarLimiteDeExtraccion);
+  document.getElementById("adelantar").addEventListener("click", adelantarDia);
+  document.getElementById("registro").addEventListener("click", registerViewer);
+  document.getElementById("logout").addEventListener("click", logout);
 });
 
-//funciones generales
 function extraerDinero() {
-  verificarDeuda();
+  checkDebt();
   if (extraccionRestante != 0) {
-    var valorIngresado = mostrarMensaje("Ingrese cuanto dinero desea extraer.");
+    var valorIngresado = showMessage("Ingrese cuanto dinero desea extraer.");
     if (cancelar(valorIngresado)) {
       if (
         esNumeroPositivo(valorIngresado) &&
@@ -72,7 +53,7 @@ function extraerDinero() {
       ) {
         extraccionRestante -= valorIngresado;
         restarDinero(valorIngresado);
-        enviarMensaje(
+        sendMessage(
           "Se ha extraido satisfactoriamente: $" +
             valorIngresado +
             " de su cuenta y le queda un total de: $" +
@@ -84,7 +65,7 @@ function extraerDinero() {
       }
     }
   } else {
-    enviarMensaje(
+    sendMessage(
       "No puede realizar mas extracciones por hoy, por favor vuelva mañana."
     );
   }
@@ -92,7 +73,7 @@ function extraerDinero() {
 
 function depositarDinero() {
   if (deuda < 0) {
-    var deposito = mostrarMensaje(
+    var deposito = showMessage(
       "Ingrese cuanto desea depositar para saldar su deuda."
     );
     if (cancelar(deposito)) {
@@ -102,33 +83,33 @@ function depositarDinero() {
           deuda += deposito;
           if (deuda > 0) {
             saldoCuenta += deuda;
-            enviarMensaje(
+            sendMessage(
               "Se ha depositado la diferencia de su deuda a su cuenta en $" +
                 deuda
             );
             deuda = 0;
           }
-          enviarMensaje(
+          sendMessage(
             "Se ha saldado $" +
               deposito +
               " de su deuda y su deuda queda en $" +
               deuda +
               "."
           );
-          guardarValores();
+          saveValues();
           actualizarDeudaEnPantalla();
           actualizarSaldoEnPantalla();
         }
       }
     }
   } else {
-    var deposito = mostrarMensaje("Ingrese cuanto desea depositar.");
+    var deposito = showMessage("Ingrese cuanto desea depositar.");
     if (cancelar(deposito)) {
       if (esNumeroPositivo(deposito)) {
         var fondoMax = 10000;
         if (saldoCuenta + parseInt(deposito) <= fondoMax) {
           sumarDinero(deposito);
-          enviarMensaje(
+          sendMessage(
             "Se ha depositado satisfactoriamente: $" +
               deposito +
               " de su cuenta y le queda un total de: $" +
@@ -136,7 +117,7 @@ function depositarDinero() {
               "."
           );
         } else {
-          enviarMensaje(
+          sendMessage(
             "Está superando su límite de caja, por favor no exceda su fondo maximo de $" +
               fondoMax
           );
@@ -149,8 +130,8 @@ function depositarDinero() {
 }
 
 function pagarServicio() {
-  verificarDeuda();
-  var opcion = mostrarMensaje(
+  checkDebt();
+  var opcion = showMessage(
     "¿Que servicio desea pagar? \n 1 - Agua $" +
       services[0].costo +
       ". \n2 - Telefono $" +
@@ -165,12 +146,12 @@ function pagarServicio() {
 }
 
 function transferirDinero() {
-  verificarDeuda();
+  checkDebt();
   if (saldoCuenta > 0) {
-    var monto = mostrarMensaje("Ingrese el monto que desea transferir.");
+    var monto = showMessage("Ingrese el monto que desea transferir.");
     if (cancelar(monto)) {
       if (esNumeroPositivo(monto) && haySaldo(monto)) {
-        var cuenta = mostrarMensaje(
+        var cuenta = showMessage(
           "Ingrese el numero de cuenta a la cual desea transferir. \n" +
             users[0].nombreUsuario +
             " = 0\n" +
@@ -181,15 +162,15 @@ function transferirDinero() {
             users[3].nombreUsuario +
             " = 3\n"
         );
-        var passwordIn = mostrarMensaje(
+        var passwordIn = showMessage(
           "Por favor, ingrese su clave para confirmar la transaccion."
         );
-        if (passwordIn == objUser.password) {
+        if (passwordIn == currentUser.password) {
           if (
             cuenta == parseInt(localStorage.getItem("currentUser")) ||
             cuenta >= 4
           ) {
-            enviarMensaje(
+            sendMessage(
               "Por favor ingrese una cuenta que no sea la misma a la que está loggueado."
             );
             transferirDinero();
@@ -199,42 +180,42 @@ function transferirDinero() {
             actualizarSaldoEnPantalla();
           }
         } else {
-          enviarMensaje("Contraseña incorrecta.");
+          sendMessage("Contraseña incorrecta.");
           intentos++;
           if (intentos == 3) {
-            var pistaPass = objUser.password;
+            var pistaPass = currentUser.password;
             for (var i = 0; i < 4; i++) {
               var j = Math.floor(
-                Math.random() * parseInt(objUser.password.length)
+                Math.random() * parseInt(currentUser.password.length)
               );
               pistaPass = pistaPass.replace(pistaPass[j], "*");
             }
             alert("Le ayudamos a recordar su contraseña era = " + pistaPass);
           } else if (intentos == 6) {
-            enviarMensaje(
+            sendMessage(
               "Ha fallado demasiadas veces por cuestiones de seguridad su cuenta se ha vaciado totalmente."
             );
             saldoCuenta = 0;
             actualizarSaldoEnPantalla();
-            guardarValores();
+            saveValues();
             intentos = 0;
           }
         }
       }
     }
   } else {
-    enviarMensaje("No dispone de fondos para transferir");
+    sendMessage("No dispone de fondos para transferir");
   }
 }
 
 function peticionDePrestamo() {
-  verificarDeuda();
+  checkDebt();
   var limitePrestamo = 2000;
-  var prestamo = mostrarMensaje("Ingrese el monto que desea que se le preste.");
+  var prestamo = showMessage("Ingrese el monto que desea que se le preste.");
   if (prestamo <= limitePrestamo) {
     if (prestamo > 0) {
       var intereses = (prestamo * porcentaje) / 100;
-      enviarMensaje(
+      sendMessage(
         "Se le ha prestado la suma de $" +
           prestamo +
           " \nRecuerde que debe devolver la suma de $" +
@@ -251,7 +232,7 @@ function peticionDePrestamo() {
       porcentaje = 10;
     }
   } else {
-    enviarMensaje(
+    sendMessage(
       "Ingrese un valor menor a su limite de prestamo de $" + limitePrestamo
     );
     peticionDePrestamo();
@@ -259,12 +240,12 @@ function peticionDePrestamo() {
 }
 
 function cambiarLimiteDeExtraccion() {
-  limiteExtraccion = mostrarMensaje(
+  limiteExtraccion = showMessage(
     "Por favor, ingrese el nuevo limite de extraccion. Tenga en cuenta que el limite no se recargara hasta mañana."
   );
   if (cancelar(limiteExtraccion)) {
     actualizarLimiteEnPantalla();
-    enviarMensaje(
+    sendMessage(
       "Se ha actualizado su limite de extraccion. Regrese mañana (Adelantar Dia) para es comprobar los cambios. \n \n Su nuevo limite de extraccion es: " +
         limiteExtraccion +
         "."
@@ -272,9 +253,10 @@ function cambiarLimiteDeExtraccion() {
   }
 }
 
+// This functionality simulates that date is advanced one day
+
 function adelantarDia() {
-  //Adelanta un día ficticio asi se puede volver a retirar dinero y actualizar la tasa
-  verificarDeuda();
+  checkDebt();
   if (deuda < 0) {
     porcentaje += 10;
     deuda = deuda + (deuda * porcentaje) / 100;
@@ -286,16 +268,17 @@ function adelantarDia() {
 }
 
 function logout() {
-  guardarValores();
+  saveValues();
   localStorage.setItem("validar", 0);
   location.href = "index.html";
 }
 
-function verRegistro() {
-  // permite ver, borrar o actualizar el registro de acciones
+// It allows see, erase or update the action's register
+
+function registerViewer() {
   alert(registro);
   if (registro != "Registro de acciones \n//----------------------------//\n") {
-    var borrar = mostrarMensaje("¿Desea borrar el registro? \n SI o NO");
+    var borrar = showMessage("¿Desea borrar el registro? \n SI o NO");
     if (borrar == "SI" || borrar == "si" || borrar == "Si" || borrar == "s") {
       registro = "Registro de acciones \n//----------------------------//\n";
       alert("Se ha borrado exitosamente el registro.");
@@ -306,7 +289,7 @@ function verRegistro() {
 function sumarDinero(deposito) {
   deposito = parseInt(deposito);
   saldoCuenta += deposito;
-  guardarValores();
+  saveValues();
   actualizarSaldoEnPantalla();
   actualizarLimiteEnPantalla();
 }
@@ -314,14 +297,14 @@ function sumarDinero(deposito) {
 function restarDinero(deposito) {
   deposito = parseInt(deposito);
   saldoCuenta -= deposito;
-  guardarValores();
+  saveValues();
   actualizarSaldoEnPantalla();
   actualizarLimiteEnPantalla();
 }
-//mas funciones
+
+// Check what kind of service you would like to pay
 
 function verificarTarifa(opcion) {
-  //verifica que clase de servicio se desea pagar
   opcion = parseInt(opcion);
   switch (opcion) {
     case 1:
@@ -346,16 +329,17 @@ function verificarTarifa(opcion) {
       break;
 
     default:
-      enviarMensaje("Algo salio mal.");
+      sendMessage("Algo salio mal.");
       break;
   }
 }
 
+// Effect the discount of money corresponding
+
 function pagar(tarifa, servicio) {
-  //efectua el descuento de dinero correspondiente
   if (saldoCuenta >= tarifa) {
     saldoCuenta -= tarifa;
-    enviarMensaje(
+    sendMessage(
       "Se ha abonado satisfactoriamente: $" +
         tarifa +
         " del servicio de " +
@@ -364,34 +348,35 @@ function pagar(tarifa, servicio) {
         saldoCuenta +
         "."
     );
-    guardarValores();
+    saveValues();
     actualizarSaldoEnPantalla();
   } else {
-    enviarMensaje("No hay fondos.");
+    sendMessage("No hay fondos.");
   }
 }
 
+// Check that the sesion been logged succefull to evade jump from index to homebanking
+
 function comprobarCuenta() {
-  // comprueba que la cuenta se haya loggueado para evitar saltar del index al homebanking
   var validar = localStorage.getItem("validar");
   if (validar != "1") {
     location.href = "index.html";
   }
 }
 
-function mostrarMensaje(message) {
-  //muestra un mensaje
+function showMessage(message) {
   var valorIngresado = prompt(message, "");
   return valorIngresado;
 }
 
+// Collect the debt after a certain amount of fictitious days pased
+
 function cobrarDeudaAutomaticamente() {
-  //cobra la deuda luego de cierta cantidad de días ficticios pasados.
   var dias = porcentaje / 10;
   if (dias % 5 == 0) {
     saldoCuenta += deuda;
     deuda = 0;
-    enviarMensaje(
+    sendMessage(
       "Se ha cobrado automaticamente de su deposito su deuda + intereses del %" +
         porcentaje
     );
@@ -401,50 +386,52 @@ function cobrarDeudaAutomaticamente() {
   }
 }
 
-function verificarDeuda() {
-  // verifica que no debas demasiado dinero evitando que sigas usando el servicio
+// Check that you do not have too much debt avoiding that you do not continue using the service
+
+function checkDebt() {
   while (saldoCuenta <= -2000) {
-    enviarMensaje("Tu cuenta fue inhabilitada hasta que saldes tu prestamo.");
+    sendMessage("Tu cuenta fue inhabilitada hasta que saldes tu prestamo.");
     depositarDinero();
   }
 }
 
-function enviarMensaje(mensaje) {
-  // envia un mensaje al registro para llevar una lista de acciones
+function sendMessage(mensaje) {
   registro += mensaje;
   registro += "\n//----------------------------//\n";
   alert(mensaje);
 }
 
-/*cuando se efectua una transferencia se le 
-avisa a la cuenta a la que se le transfiere en el registro*/
+// When a transaction is made, the other account is notified that through registration
+
 function sumarDineroCuenta(cuenta, monto) {
-  var objUserCuenta = users[parseInt(cuenta)];
-  var saldoCuenta = objUserCuenta.saldoCuenta;
-  var registro = objUserCuenta.registro;
+  var currentUserCuenta = users[parseInt(cuenta)];
+  var saldoCuenta = currentUserCuenta.saldoCuenta;
+  var registro = currentUserCuenta.registro;
   registro +=
     "Recibiste una transferencia de $" + monto + " de una cuenta amiga";
   registro += "\n//----------------------------//\n";
   saldoCuenta += parseInt(monto);
-  objUserCuenta.registro += registro;
-  objUserCuenta.saldoCuenta = parseInt(saldoCuenta);
-  users[parseInt(cuenta)] = objUserCuenta;
+  currentUserCuenta.registro += registro;
+  currentUserCuenta.saldoCuenta = parseInt(saldoCuenta);
+  users[parseInt(cuenta)] = currentUserCuenta;
   localStorage.setItem("users", JSON.stringify(users));
-  enviarMensaje(
+  sendMessage(
     "Se ha depositado de tu cuenta a la cuenta de " +
       users[parseInt(cuenta)].nombreUsuario +
       "el total de $" +
       monto
   );
 }
-function guardarValores() {
-  //guarda todos los datos en el localstorage que actua como base de datos
-  objUser.limiteExtraccion = parseInt(limiteExtraccion);
-  objUser.saldoCuenta = parseInt(saldoCuenta);
-  objUser.theme = parseInt(theme);
-  objUser.registro = registro;
-  objUser.prestamo = parseInt(deuda);
-  objUser.tasa = parseInt(porcentaje);
-  users[parseInt(localStorage.getItem("currentUser"))] = objUser;
+
+// Save all of data in the localstorage that acting like a base of data
+
+function saveValues() {
+  currentUser.limiteExtraccion = parseInt(limiteExtraccion);
+  currentUser.saldoCuenta = parseInt(saldoCuenta);
+  currentUser.theme = parseInt(theme);
+  currentUser.registro = registro;
+  currentUser.prestamo = parseInt(deuda);
+  currentUser.tasa = parseInt(porcentaje);
+  users[parseInt(localStorage.getItem("currentUser"))] = currentUser;
   localStorage.setItem("users", JSON.stringify(users));
 }
