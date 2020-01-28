@@ -1,12 +1,12 @@
 [
   {
-    "accountId": "nicolas",
-    "accountName": "Nicolas Ezequiel Melluso",
-    "password": "easypass"
+    "username": "nicolas",
+    "name": "Nicolas Ezequiel Melluso",
+    "password": 1234
   },
   {
-    "accountId": "brandon",
-    "accountName": "Brandon Ariel Braun",
-    "password": "hardpass"
+    "username": "brandon",
+    "name": "Brandon Ariel Braun",
+    "password": 4321
   }
 ]

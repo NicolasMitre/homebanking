@@ -1,6 +1,3 @@
-//Declaración de variables
-// var usuarios;
-
 async function readJson() {
   try {
     config = {
@@ -14,13 +11,16 @@ async function readJson() {
   }
 }
 
-//Ejecución de las funciones que actualizan los valores de las variables en el HTML.
+document.addEventListener("DOMContentLoaded", function() {
+  readJson()
+    .then(function(data) {
+      iniciarSesion(data);
+    })
+    .catch(function(e) {
+      console.error("no se encuentra el archivo json" + e);
+    });
+});
 
-window.onload = function() {
-  iniciarSesion();
-};
-
-//Funciones que tenes que completar
 function cambiarLimiteDeExtraccion() {}
 
 function extraerDinero() {}
@@ -31,41 +31,42 @@ function pagarServicio() {}
 
 function transferirDinero() {}
 
-function iniciarSesion() {
-  let usuarios;
-  readJson().then(data => {
-    usuarios = data;
-    comprobarSesion(usuarios);
-  });
+function iniciarSesion(datos) {
+  comprobarSesion(datos);
 }
-//Funciones de carga de datos
+
+function comprobarSesion(datos) {
+  if (recuperarLocalStorage()) {
+    var nombre = prompt("nombre", "");
+    for (var i = 0; i < datos.length; i++) {
+      if (nombre == datos[i].username) {
+        alert("entre");
+        break;
+      }
+    }
+  } else {
+    actualizarlocalStorage(datos);
+  }
+}
+
+function recuperarLocalStorage() {
+  return localStorage.getItem("usuarios");
+}
+
+function actualizarlocalStorage(datos) {
+  localStorage.setItem("usuarios", JSON.stringify(datos));
+}
 
 //Funciones que actualizan el valor de las variables en el HTML
 function cargarNombreEnPantalla() {
-  document.getElementById("nombre").innerHTML = "Bienvenido/a " + nombreUsuario;
+  document.getElementById("nombre").innerHTML = "Bienvenido/a ";
 }
 
 function actualizarSaldoEnPantalla() {
-  document.getElementById("saldo-cuenta").innerHTML = "$" + saldoCuenta;
+  document.getElementById("saldo-cuenta").innerHTML = "$";
 }
 
 function actualizarLimiteEnPantalla() {
   document.getElementById("limite-extraccion").innerHTML =
-    "Tu límite de extracción es: $" + limiteExtraccion;
-}
-
-// Sesion
-
-function comprobarSesion(listaUsuarios) {
-  for (var i = 0; i < listaUsuarios.length; i++) {
-    if (
-      listaUsuarios[i].accountId == "nicolas" &&
-      listaUsuarios[i].password == "easypass"
-    ) {
-      console.log("Nico");
-      break;
-    } else {
-      alert("error");
-    }
-  }
+    "Tu límite de extracción es: $";
 }
